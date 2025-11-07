@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kerovit Experience Center</title>
+
+    <!-- ✅ Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ✅ Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+
+    <!-- ✅ Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sinkin+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Sinkin Sans", sans-serif;
+        background-color: #fff;
+      }
+
+      /* Swiper main container */
+      .heroslider {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .mainswiper,
+      .mainswiper .swiper-slide {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ✨ Fade + Zoom Animation (like second one) */
+      .mainswiper .swiper-slide {
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: scale(1.05);
+        transition: opacity 1s ease-in-out, transform 5s ease;
+      }
+
+      .mainswiper .swiper-slide.swiper-slide-active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+      }
+
+      /* Thumbnail section */
+      .thumbscontainer {
+        position: absolute;
+        bottom: 64px;
+        right: 88px;
+        z-index: 999;
+      }
+
+      .thumbswiper {
+        width: 400px;
+      }
+
+      .thumbwrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .thumbimage {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        overflow: visible;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .thumbimage::before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 94px;
+        height: 94px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+        z-index: 1;
+      }
+
+      .thumbimage img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        z-index: 2;
+        transition: transform 0.5s ease;
+      }
+
+      .thumbimage.active img {
+        transform: scale(1);
+      }
+
+      .thumbimage:not(.active) img {
+        transform: scale(1.2);
+      }
+
+      /* SVG border animation */
+      .progresssvg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .progressrect {
+        fill: none;
+        stroke: #ffffff;
+        stroke-width: 2;
+        stroke-dasharray: 440;
+        stroke-dashoffset: 440;
+        stroke-linejoin: round;
+        filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+      }
+
+      @keyframes progressAnim {
+        from {
+          stroke-dashoffset: 440;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .thumbscontainer {
+          bottom: 10%;
+          right: 50%;
+          transform: translate(50%, 10%);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header
+      class="flex items-center justify-between px-[64px] py-[26px] border-b border-gray-200"
+    >
+      <div class="flex items-center">
+        <img src="./Group.png" alt="Logo" class="h-10" />
+      </div>
+    </header>
+
+    <!-- Info Section -->
+    <section
+      class="flex flex-col items-center justify-center text-center py-[124px] px-4"
+    >
+      <h1 class="text-3xl sm:text-4xl font-semibold text-[#003b63]">
+        Kerovit Experience Center, Bhiwadi
+      </h1>
+      <p class="mt-4 text-sm sm:text-base text-gray-600">
+        Open Today: 10:00 AM to 7:00 PM
+      </p>
+      <button
+        class="mt-6 bg-[#003b63] text-white font-semibold px-6 py-2 rounded-sm hover:bg-[#012d4a] transition-all duration-200"
+      >
+        Book a Tour
+      </button>
+    </section>
+
+    <div class="heroslider">
+      <!-- Main Swiper -->
+      <div class="swiper mainswiper">
+        <div class="swiper-wrapper">
+          <div
+            class="swiper-slide"
+            style="background-image: url('./assets/craft1.png')"
+          ></div>
+          <div
+            class="swiper-slide"
+            style="background-image: url('./assets/craft2.png')"
+          ></div>
+          <div
+            class="swiper-slide"
+            style="background-image: url('./assets/craft3.png')"
+          ></div>
+          <div
+            class="swiper-slide"
+            style="background-image: url('./assets/craft4.png')"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Thumbnails -->
+      <div class="thumbscontainer" id="homecontainslide">
+        <div class="swiper thumbswiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="thumbwrapper">
+                <div class="thumbimage">
+                  <img src="./assets/craft1.png" />
+                  <svg
+                    class="progresssvg"
+                    viewBox="0 0 120 120"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      class="progressrect"
+                      x="6"
+                      y="6"
+                      width="110"
+                      height="110"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="thumbwrapper">
+                <div class="thumbimage">
+                  <img src="./assets/craft2.png" />
+                  <svg
+                    class="progresssvg"
+                    viewBox="0 0 120 120"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      class="progressrect"
+                      x="6"
+                      y="6"
+                      width="110"
+                      height="110"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="thumbwrapper">
+                <div class="thumbimage">
+                  <img src="./assets/craft3.png" />
+                  <svg
+                    class="progresssvg"
+                    viewBox="0 0 120 120"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      class="progressrect"
+                      x="6"
+                      y="6"
+                      width="110"
+                      height="110"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="thumbwrapper">
+                <div class="thumbimage">
+                  <img src="./assets/craft4.png" />
+                  <svg
+                    class="progresssvg"
+                    viewBox="0 0 120 120"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      class="progressrect"
+                      x="6"
+                      y="6"
+                      width="110"
+                      height="110"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section
+      class="mx-auto py-20 px-6 md:px-12 flex flex-col md:flex-row justify-between gap-12"
+    >
+      <!-- Left Section -->
+      <div class="md:w-2/3 space-y-6">
+        <h2
+          class="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight"
+        >
+          We're Here When You Are
+        </h2>
+
+        <p class="text-gray-600 leading-relaxed">
+          All our Experience Centers are open 7 days a week, from 10:00 AM to
+          6:00 PM. Whether you're starting your research or finalizing
+          decisions, visit us on your schedule. Our team is ready to guide you
+          through our collections, share expert insights, and help you visualize
+          your perfect bathroom. We're here to help whenever you visit.
+        </p>
+
+        <p class="text-gray-600 leading-relaxed">
+          Discover the new Roca Showroom in Jakarta. Roca Experience Center
+          Indonesia is the new center of innovative bathroom concepts and
+          bathroom inspiration. The Roca Experience Center features various
+          types of complete bathroom products that prioritize design, comfort,
+          functionality, and sustainable solutions.
+        </p>
+
+        <button
+          class="bg-[#002A5C] text-white font-medium px-6 py-3 rounded-md hover:bg-[#003875] transition"
+        >
+          Book a Tour
+        </button>
+      </div>
+
+      <!-- Right Section -->
+      <div class="md:w-1/2 space-y-8">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-900 mb-4">Details</h3>
+
+          <div class="space-y-6 text-gray-700">
+            <div>
+              <h4 class="font-medium text-gray-900 mb-1">Contact</h4>
+              <p>+91 999 9999 991</p>
+            </div>
+
+            <div>
+              <h4 class="font-medium text-gray-900 mb-1">Address</h4>
+              <p>
+                Kerovit Experience Center Bhiwadi<br />
+                119 Third Floor, Farah Icon, Laal Bagh Main Rd,<br />
+                opp. New Passport Kendra, Bhiwadi,<br />
+                Rajasthan 560027
+              </p>
+            </div>
+
+            <a
+              href="#"
+              class="text-[#002A5C] font-medium flex items-center gap-1 hover:underline"
+            >
+              Open Map <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <section
+      class=" mx-auto py-16 px-6 md:px-12 flex flex-col md:flex-row items-start gap-12"
+    >
+      <!-- Left Section -->
+      <div class="w-full md:w-1/2 space-y-8">
+        <h2 class="text-3xl md:text-4xl font-semibold text-gray-900">
+          Book a Tour
+        </h2>
+
+        <form class="space-y-6">
+          <!-- Full Name -->
+          <div>
+            <label class="block text-gray-600 mb-1">Full Name</label>
+            <input
+              type="text"
+              class="w-full border-b border-gray-300 focus:border-gray-800 outline-none py-2"
+              placeholder=""
+            />
+          </div>
+
+          <!-- Email and Phone -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-gray-600 mb-1">Email</label>
+              <input
+                type="email"
+                class="w-full border-b border-gray-300 focus:border-gray-800 outline-none py-2"
+              />
+            </div>
+
+            <div>
+              <label class="block text-gray-600 mb-1">10-digit Phone</label>
+              <input
+                type="tel"
+                maxlength="10"
+                class="w-full border-b border-gray-300 focus:border-gray-800 outline-none py-2"
+              />
+            </div>
+          </div>
+
+          <!-- State and City -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-gray-600 mb-1">State</label>
+              <select
+                class="w-full border-b border-gray-300 focus:border-gray-800 outline-none py-2 bg-transparent"
+              >
+                <option value="">Select State</option>
+                <option>Rajasthan</option>
+                <option>Maharashtra</option>
+                <option>Delhi</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-gray-600 mb-1">City</label>
+              <select
+                class="w-full border-b border-gray-300 focus:border-gray-800 outline-none py-2 bg-transparent"
+              >
+                <option value="">Select City</option>
+                <option>Jaipur</option>
+                <option>Mumbai</option>
+                <option>Delhi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label class="block text-gray-600 mb-1">Message</label>
+            <textarea
+              rows="3"
+              class="w-full border-b border-gray-300 focus:border-gray-800 outline-none py-2 resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Disclaimer -->
+          <p class="text-sm text-gray-500 leading-relaxed">
+            By submitting this form you are allowing our lorem ipsum team to
+            contact you. Lorem ipsum disclaimer lorem ipsum.
+          </p>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="bg-[#002A5C] text-white px-6 py-3 rounded-md hover:bg-[#003875] transition"
+          >
+            Send Enquiry
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Section (Image) -->
+      <div class="w-full md:w-1/2">
+        <img
+          src="./assets/craft1.png"
+          alt="Experience Center"
+          class="w-full h-auto rounded-md shadow-sm"
+        />
+      </div>
+    </section>
+    <!-- ✅ Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+      const thumbSwiper = new Swiper(".thumbswiper", {
+        slidesPerView: 4,
+        spaceBetween: 20,
+        watchSlidesProgress: true,
+      });
+
+      const mainSwiper = new Swiper(".mainswiper", {
+        loop: true,
+        effect: "fade", // fade like second
+        speed: 1000,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        thumbs: {
+          swiper: thumbSwiper,
+        },
+        on: {
+          slideChangeTransitionStart: function () {
+            const realIndex = this.realIndex;
+
+            thumbSwiper.slides.forEach((slide, index) => {
+              const rect = slide.querySelector(".progressrect");
+              const img = slide.querySelector("img");
+
+              // Reset SVG animation
+              if (rect) {
+                rect.style.animation = "none";
+                rect.getBoundingClientRect();
+                if (index === realIndex) {
+                  rect.style.animation = "progressAnim 5s linear forwards";
+                }
+              }
+
+              // Image zoom
+              if (img) {
+                if (index === realIndex) {
+                  img.style.transform = "scale(1)";
+                  img.style.opacity = "1";
+                } else {
+                  img.style.transform = "scale(1.2)";
+                  img.style.opacity = "1";
+                }
+              }
+            });
+          },
+        },
+      });
+
+      mainSwiper.emit("slideChangeTransitionStart");
+    </script>
+  </body>
+</html>
