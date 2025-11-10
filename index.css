@@ -1,7 +1,97 @@
+/* ✅ Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Sinkin+Sans:wght@300;400;500;600;700&display=swap");
+
+/* ✅ Global Variables for consistency */
+:root {
+  --font-primary: "Sinkin Sans", sans-serif;
+  --color-dark: #3c3c3b;
+  --color-light: #979795;
+  --color-black: #000000;
+  --color-button-bg: #003366;
+  --color-button-text: #ffffff;
+
+  --fs-lg: 40px;
+  --fs-md: 14px;
+  --lh-tight: 140%;
+  --lh-loose: 170%;
+}
+
+/* ✅ Base typography */
+body {
+  font-family: var(--font-primary);
+  color: var(--color-dark);
+  letter-spacing: 0.5px;
+}
+
+/* ===== Section 1 ===== */
 .section_1_header {
-    font-weight: 400;
-    font-size: 40px;
-    color: #3c3c3b;
-    line-height: 140%;
-    letter-spacing: 1%;
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+  color: var(--color-dark);
+}
+
+.section_1_description {
+  font-weight: 400;
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+  color: var(--color-dark);
+  letter-spacing: 0.5px;
+  margin-top: 24px;
+}
+
+/* ===== Section 3 ===== */
+.section_3_header {
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+  color: var(--color-dark);
+  padding-bottom: 32px;
+}
+
+.section_3_description {
+  font-weight: 300;
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+  color: var(--color-black);
+}
+
+/* ===== Labels ===== */
+.label_heading {
+  font-weight: 400;
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+  color: var(--color-light);
+}
+
+.label_discription {
+  font-weight: 400;
+  font-size: 14px;
+  color: #3c3c3b;
+  letter-spacing: 2%;
+}
+
+.label_addition {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 170%;
+  color: #003366;
+}
+
+/* ===== Buttons ===== */
+.button1 {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button1:hover {
+  background-color: #00264d;
 }

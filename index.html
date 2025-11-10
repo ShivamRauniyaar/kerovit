@@ -20,6 +20,13 @@
       rel="stylesheet"
     />
 
+    <!-- 👇 Import your external CSS file -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- ✅ GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
     <style>
       body {
         margin: 0;
@@ -76,8 +83,8 @@
 
       .thumbimage {
         position: relative;
-        width: 100px;
-        height: 100px;
+        /* width: 100px;
+        height: 100px; */
         overflow: visible;
         display: flex;
         align-items: center;
@@ -85,7 +92,7 @@
       }
 
       .thumbimage::before {
-        content: "";
+        /* content: "";
         position: absolute;
         top: 4px;
         left: 4px;
@@ -93,24 +100,25 @@
         height: 94px;
         border: 2px solid rgba(255, 255, 255, 0.3);
         box-sizing: border-box;
-        z-index: 1;
+        z-index: 1; */
       }
 
       .thumbimage img {
-        width: 80px;
-        height: 80px;
+        width: 88px;
+        height: 88px;
         object-fit: cover;
         z-index: 2;
         transition: transform 0.5s ease;
+        padding: 8px;
       }
 
       .thumbimage.active img {
         transform: scale(1);
       }
 
-      .thumbimage:not(.active) img {
+      /* .thumbimage:not(.active) img {
         transform: scale(1.2);
-      }
+      } */
 
       /* SVG border animation */
       .progresssvg {
@@ -131,6 +139,86 @@
         stroke-dashoffset: 440;
         stroke-linejoin: round;
         filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+      }
+
+      .sectionpadd {
+        overflow: hidden;
+        padding-top: 192px;
+      }
+
+      .linkonhovertext {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .linkonhover {
+        position: relative;
+        display: inline-block;
+        transition: all 0.4s ease-in-out;
+        line-height: 24px;
+      }
+
+      .linkonhover::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 0;
+        height: 1px;
+        background-color: #003366;
+        transition: width 0.4s ease-in-out;
+      }
+
+      .linkonhovertext:hover .linkonhover::after {
+        width: 100%;
+      }
+
+      .linkonhovertext:hover .linkonhover {
+        padding-right: 5px;
+      }
+
+      .arrow {
+        transition: transform 0.4s ease-in-out;
+      }
+
+      .linkonhovertext:hover .arrow {
+        transform: translateX(5px);
+      }
+
+      .shine {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shine::before {
+        background-color: rgba(255, 255, 255, 0.4);
+        content: "";
+        display: block;
+        height: 100%;
+        left: -85%;
+        position: absolute;
+        top: 0;
+        transform: skewX(-25deg);
+        width: 50%;
+        z-index: 2;
+      }
+
+      .shine:hover::before {
+        animation: shine 0.85s;
+        cursor: pointer;
+      }
+
+      @keyframes shine {
+        100% {
+          left: 125%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .sectionpadd {
+          padding-top: 104px;
+        }
       }
 
       @keyframes progressAnim {
@@ -166,17 +254,9 @@
     <section
       class="flex flex-col items-center justify-center text-center py-[124px] px-4"
     >
-      <h1 class="text-3xl sm:text-4xl font-semibold text-[#003b63]">
-        Kerovit Experience Center, Bhiwadi
-      </h1>
-      <p class="mt-4 text-sm sm:text-base text-gray-600">
-        Open Today: 10:00 AM to 7:00 PM
-      </p>
-      <button
-        class="mt-6 bg-[#003b63] text-white font-semibold px-6 py-2 rounded-sm hover:bg-[#012d4a] transition-all duration-200"
-      >
-        Book a Tour
-      </button>
+      <h1 class="section_1_header">Kerovit Experience Center, Bhiwadi</h1>
+      <p class="section_1_description">Open Today: 10:00 AM to 7:00 PM</p>
+      <div class="button1 mt-[40px]">Book a Tour</div>
     </section>
 
     <div class="heroslider">
@@ -296,13 +376,9 @@
     >
       <!-- Left Section -->
       <div class="md:w-2/3 space-y-6">
-        <h2
-          class="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight"
-        >
-          We're Here When You Are
-        </h2>
+        <h2 class="section_3_header">We're Here When You Are</h2>
 
-        <p class="text-gray-600 leading-relaxed">
+        <p class="section_3_description">
           All our Experience Centers are open 7 days a week, from 10:00 AM to
           6:00 PM. Whether you're starting your research or finalizing
           decisions, visit us on your schedule. Our team is ready to guide you
@@ -310,7 +386,7 @@
           your perfect bathroom. We're here to help whenever you visit.
         </p>
 
-        <p class="text-gray-600 leading-relaxed">
+        <p class="section_3_description">
           Discover the new Roca Showroom in Jakarta. Roca Experience Center
           Indonesia is the new center of innovative bathroom concepts and
           bathroom inspiration. The Roca Experience Center features various
@@ -319,7 +395,7 @@
         </p>
 
         <button
-          class="bg-[#002A5C] text-white font-medium px-6 py-3 rounded-md hover:bg-[#003875] transition"
+          class="button1"
         >
           Book a Tour
         </button>
@@ -327,38 +403,166 @@
 
       <!-- Right Section -->
       <div class="md:w-1/2 space-y-8">
-        <div>
-          <h3 class="text-2xl font-semibold text-gray-900 mb-4">Details</h3>
+        <div class="flex justify-end">
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Details</h3>
 
-          <div class="space-y-6 text-gray-700">
-            <div>
-              <h4 class="font-medium text-gray-900 mb-1">Contact</h4>
-              <p>+91 999 9999 991</p>
+            <div class="space-y-6 text-gray-700">
+              <div>
+                <h4 class="label_heading">Contact</h4>
+                <p class="label_discription">+91 999 9999 991</p>
+              </div>
+
+              <div>
+                <h4 class="label_heading">Address</h4>
+                <p class="label_discription">
+                  Kerovit Experience Center Bhiwadi<br />
+                  119 Third Floor, Farah Icon, Laal Bagh Main Rd,<br />
+                  opp. New Passport Kendra, Bhiwadi,<br />
+                  Rajasthan 560027
+                </p>
+              </div>
+
+              <a
+                href="#"
+                class="text-[#002A5C] font-medium flex items-center gap-1 hover:underline"
+              >
+                Open Map <span>→</span>
+              </a>
             </div>
-
-            <div>
-              <h4 class="font-medium text-gray-900 mb-1">Address</h4>
-              <p>
-                Kerovit Experience Center Bhiwadi<br />
-                119 Third Floor, Farah Icon, Laal Bagh Main Rd,<br />
-                opp. New Passport Kendra, Bhiwadi,<br />
-                Rajasthan 560027
-              </p>
-            </div>
-
-            <a
-              href="#"
-              class="text-[#002A5C] font-medium flex items-center gap-1 hover:underline"
-            >
-              Open Map <span>→</span>
-            </a>
           </div>
         </div>
       </div>
     </section>
 
-     <section
-      class=" mx-auto py-16 px-6 md:px-12 flex flex-col md:flex-row items-start gap-12"
+    <section id="home-slider" class="sectionpadd">
+      <div class="section_3_header">
+        Discover lorem ipsum when you <br />
+        visit our Bhiwadi Center
+      </div>
+
+      <div class="mx-auto px-4">
+        <!-- ✅ Swiper -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <a href="/" class="group block">
+                <div
+                  class="relative w-full flex items-center justify-center bg-[#E1E6E5] overflow-hidden"
+                >
+                  <div class="shine aspect-[3/4]">
+                    <img
+                      src="/assets/assets_card.png"
+                      alt="Faucet"
+                      class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-125"
+                    />
+                  </div>
+                </div>
+                <div class="pt-3 sm:pt-4 flex items-center justify-between">
+                  <p class="small">Faucet</p>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="/" class="group block">
+                <div
+                  class="relative w-full flex items-center justify-center bg-[#E1E6E5] overflow-hidden"
+                >
+                  <div class="shine aspect-[3/4]">
+                    <img
+                      src="/assets/assets_card.png"
+                      alt="Shower"
+                      class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-125"
+                    />
+                  </div>
+                </div>
+                <div class="pt-3 sm:pt-4 flex items-center justify-between">
+                  <p class="small">Shower</p>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/" class="group block">
+                <div
+                  class="relative w-full flex items-center justify-center bg-[#E1E6E5] overflow-hidden"
+                >
+                  <div class="shine aspect-[3/4]">
+                    <img
+                      src="/assets/assets_card.png"
+                      alt="Shower"
+                      class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-125"
+                    />
+                  </div>
+                </div>
+                <div class="pt-3 sm:pt-4 flex items-center justify-between">
+                  <p class="small">Basin</p>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/" class="group block">
+                <div
+                  class="relative w-full flex items-center justify-center bg-[#E1E6E5] overflow-hidden"
+                >
+                  <div class="shine aspect-[3/4]">
+                    <img
+                      src="/assets/assets_card.png"
+                      alt="Shower"
+                      class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-125"
+                    />
+                  </div>
+                </div>
+                <div class="pt-3 sm:pt-4 flex items-center justify-between">
+                  <p class="small">Toilet</p>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/" class="group block">
+                <div
+                  class="relative w-full flex items-center justify-center bg-[#E1E6E5] overflow-hidden"
+                >
+                  <div class="shine aspect-[3/4]">
+                    <img
+                      src="/assets/assets_card.png"
+                      alt="Shower"
+                      class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-125"
+                    />
+                  </div>
+                </div>
+                <div class="pt-3 sm:pt-4 flex items-center justify-between">
+                  <p class="small">Bathroom Furniture</p>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/" class="group block">
+                <div
+                  class="relative w-full flex items-center justify-center bg-[#E1E6E5] overflow-hidden"
+                >
+                  <div class="shine aspect-[3/4]">
+                    <img
+                      src="/assets/assets_card.png"
+                      alt="Shower"
+                      class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-125"
+                    />
+                  </div>
+                </div>
+                <div class="pt-3 sm:pt-4 flex items-center justify-between">
+                  <p class="small">Accessories</p>
+                </div>
+              </a>
+            </div>
+            <!-- Duplicate more slides as needed -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="mx-auto py-16 px-6 md:px-12 flex flex-col md:flex-row items-start gap-12"
     >
       <!-- Left Section -->
       <div class="w-full md:w-1/2 space-y-8">
@@ -458,9 +662,111 @@
         />
       </div>
     </section>
+
+    <footer class="border-t border-gray-300 pt-8 pb-6">
+      <div class="mx-auto px-6">
+        <!-- Top Section -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+        >
+          <!-- Left: Logo + tagline -->
+          <div>
+            <h1 class="text-4xl font-bold text-blue-900">KEROVIT</h1>
+            <p class="text-lg text-gray-600">Bathrooms you desire</p>
+          </div>
+
+          <!-- Right: Contact Info -->
+          <div class="text-right">
+            <p class="text-gray-700">support@kerovit.gov</p>
+            <p class="text-gray-700">+91-9999999991</p>
+          </div>
+        </div>
+
+        <hr class="my-6 border-gray-300" />
+
+        <!-- Middle Section -->
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <!-- Left: Social + App text -->
+          <div class="text-center md:text-left mb-4 md:mb-0">
+            <p class="mb-3 font-medium">
+              Download our Customer Care App for more
+            </p>
+            <div class="flex gap-4 justify-center md:justify-start text-2xl">
+              <a href="#" class="text-blue-600 hover:text-blue-800"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-pink-600 hover:text-pink-800"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-black hover:text-gray-700"
+                ><i class="fab fa-x-twitter"></i
+              ></a>
+              <a href="#" class="text-red-600 hover:text-red-800"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="#" class="text-blue-700 hover:text-blue-900"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Center: Copyright -->
+          <div class="text-gray-600 mb-4 md:mb-0">Copyright © 2025 KEROVIT</div>
+
+          <!-- Right: App Download -->
+          <div class="flex gap-3">
+            <a href="#"
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                alt="Google Play"
+                class="h-10"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                alt="App Store"
+                class="h-10"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
     <!-- ✅ Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+      // Initialize GSAP animation
+      gsap.registerPlugin(ScrollTrigger);
 
+      gsap.fromTo(
+        "#home-slider",
+        { xPercent: 50, opacity: 1 },
+        {
+          xPercent: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#home-slider",
+            start: "top 40%",
+            end: "top 40%",
+            scrub: false,
+          },
+        }
+      );
+
+      // Initialize Swiper
+      const swiper = new Swiper(".mySwiper", {
+        spaceBetween: 40,
+        loop: true,
+        slidesPerView: 6,
+        breakpoints: {
+          0: { slidesPerView: 2, spaceBetween: 16 },
+          640: { slidesPerView: 2 },
+          768: { slidesPerView: 2 },
+          991: { slidesPerView: 5 },
+        },
+      });
+    </script>
     <script>
       const thumbSwiper = new Swiper(".thumbswiper", {
         slidesPerView: 4,
@@ -497,15 +803,15 @@
               }
 
               // Image zoom
-              if (img) {
-                if (index === realIndex) {
-                  img.style.transform = "scale(1)";
-                  img.style.opacity = "1";
-                } else {
-                  img.style.transform = "scale(1.2)";
-                  img.style.opacity = "1";
-                }
-              }
+              //if (img) {
+              // if (index === realIndex) {
+              //  img.style.transform = "scale(1)";
+              //  img.style.opacity = "1";
+              // } else {
+              //   img.style.transform = "scale(1.2)";
+              //  img.style.opacity = "1";
+              //}
+              //}
             });
           },
         },
