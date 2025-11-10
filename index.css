@@ -78,6 +78,14 @@ body {
   color: #003366;
 }
 
+.section_4_heading {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 24px;
+  color: #3c3c3b;
+  line-height: 140%;
+}
+
 /* ===== Buttons ===== */
 .button1 {
   display: inline-block;
