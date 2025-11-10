@@ -100,6 +100,20 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.footer_label_first {
+  font-weight: 400;
+  font-size: 14px;
+  color: #3c3c3b;
+  line-height: 170%;
+}
+
+.footer_label_second {
+  font-weight: 400;
+  font-size: 14px;
+  color: #3c3c3b;
+  line-height: 170%;
+  letter-spacing: 2%;
+}
 .button1:hover {
   background-color: #00264d;
 }
