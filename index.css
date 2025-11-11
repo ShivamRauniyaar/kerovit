@@ -48,6 +48,12 @@ body {
   color: var(--color-dark);
   padding-bottom: 32px;
 }
+.section_3_card_header {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--lh-loose);
+  color: var(--color-black);
+}
 
 .section_3_description {
   font-weight: 300;
@@ -56,6 +62,20 @@ body {
   color: var(--color-black);
 }
 
+
+.section_3_subheading {
+  font-weight: 400;
+  font-weight: 24px;
+  line-height: var(--lh-tight);
+  color: var(--color-dark);
+}
+
+.section_3_mapped_view {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: var(--lh-loose);
+  color: var(--color-button-bg);
+}
 /* ===== Labels ===== */
 .label_heading {
   font-weight: 400;
@@ -116,4 +136,22 @@ body {
 }
 .button1:hover {
   background-color: #00264d;
+}
+
+
+input {
+  height: 66px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--lh-tight);
+  color: var(--color-light);
+}
+
+
+select {
+  height: 66px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--lh-tight);
+  color: var(--color-light);
 }
